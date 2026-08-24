@@ -49,17 +49,12 @@ export const Sidebar = ({
         
         {/* Brand Header */}
         <div className="px-5 py-4 border-b border-zinc-800/60 flex items-center justify-between">
-          <div className="flex items-center gap-2.5 group cursor-pointer" onClick={() => setCurrentTab('dashboard')}>
-            <div className="w-6 h-6 rounded bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold text-xs font-mono transition-transform duration-200 group-hover:scale-105">
-              E
+          <div className="group cursor-pointer" onClick={() => setCurrentTab('dashboard')}>
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="font-bold text-zinc-100 text-sm tracking-tight group-hover:text-white transition-colors">EMTELCO</span>
+              <span className="text-[10px] font-mono text-zinc-500 uppercase">CMMS</span>
             </div>
-            <div>
-              <div className="flex items-center gap-1.5 leading-none">
-                <span className="font-bold text-zinc-100 text-sm tracking-tight group-hover:text-white transition-colors">EMTELCO</span>
-                <span className="text-[10px] font-mono text-zinc-500 uppercase">CMMS</span>
-              </div>
-              <p className="text-[10px] text-zinc-500 mt-0.5">Gestión Preventiva TICS</p>
-            </div>
+            <p className="text-[10px] text-zinc-500 mt-1">Gestión Preventiva TICS</p>
           </div>
 
           <button 
