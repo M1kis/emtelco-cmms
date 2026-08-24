@@ -70,14 +70,22 @@ export const Header = ({
             <span className="hidden sm:inline">Escanear QR</span>
           </button>
 
-          {/* Status Database */}
+          {/* Status Database: Icono por defecto, texto al hover */}
           <button
             onClick={onOpenSupabaseModal}
-            className="btn-interactive flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 text-zinc-700 bg-white shadow-2xs group"
-            title="Estado de conexión Supabase"
+            className="btn-interactive group relative flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 text-zinc-700 bg-white shadow-2xs transition-all duration-200 cursor-pointer"
+            title={isSupabaseActive ? "Supabase Conectado (Click para ver detalles)" : "Modo Local (Click para conectar Supabase)"}
           >
-            <span className={`w-1.5 h-1.5 rounded-full transition-transform duration-200 group-hover:scale-125 ${isSupabaseActive ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-            <span className="hidden lg:inline">
+            {/* Círculo indicador de conexión */}
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 transition-transform duration-200 group-hover:scale-125 ${
+              isSupabaseActive ? 'bg-emerald-500 shadow-xs' : 'bg-amber-500'
+            }`} />
+
+            {/* Ícono de Base de Datos (visible por defecto) */}
+            <Database className="w-3.5 h-3.5 text-zinc-600 group-hover:hidden transition-all shrink-0" />
+
+            {/* Texto al pasar el mouse */}
+            <span className="hidden group-hover:inline transition-all duration-200 whitespace-nowrap animate-in fade-in zoom-in-95 duration-100">
               {isSupabaseActive ? 'Supabase Conectado' : 'Modo Local'}
             </span>
           </button>
