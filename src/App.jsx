@@ -6,6 +6,8 @@ import { Sidebar } from './components/layout/Sidebar';
 import { DashboardView } from './components/dashboard/DashboardView';
 import { AssetsView } from './components/assets/AssetsView';
 import { AssetFormModal } from './components/assets/AssetFormModal';
+import { AssetDetailModal } from './components/assets/AssetDetailModal';
+import { AssetScannerModal } from './components/assets/AssetScannerModal';
 import { MaintenanceView } from './components/maintenance/MaintenanceView';
 import { MaintenanceWizardModal } from './components/maintenance/MaintenanceWizardModal';
 import { ScheduleView } from './components/schedule/ScheduleView';
@@ -13,6 +15,7 @@ import { ScheduleModal } from './components/schedule/ScheduleModal';
 import { ReportsView } from './components/reports/ReportsView';
 import { SettingsView } from './components/settings/SettingsView';
 import { SupabaseConfigModal } from './components/settings/SupabaseConfigModal';
+import { CommandPalette } from './components/common/CommandPalette';
 import { CheckCircle2, AlertCircle, Info } from 'lucide-react';
 
 function MainLayout() {
@@ -27,6 +30,9 @@ function MainLayout() {
   const [isAssetModalOpen, setIsAssetModalOpen] = useState(false);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [detailAsset, setDetailAsset] = useState(null);
 
   const { notification } = useData();
 
@@ -48,7 +54,7 @@ function MainLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col lg:flex-row text-zinc-900 selection:bg-zinc-200">
       
       {/* Sidebar fijo a la izquierda */}
       <Sidebar 
@@ -65,27 +71,29 @@ function MainLayout() {
       />
 
       {/* Contenido Principal con margen para Sidebar */}
-      <div className="flex-1 lg:pl-72 flex flex-col min-w-0">
+      <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         
         {/* Header Superior */}
         <Header 
           currentView={tabTitles[currentTab] || 'EMTELCO CMMS'}
           onOpenMobileMenu={() => setMobileSidebarOpen(true)}
           onOpenSupabaseModal={() => setIsSupabaseModalOpen(true)}
+          onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+          onOpenScannerModal={() => setIsScannerOpen(true)}
         />
 
-        {/* Notificación Toast Flotante */}
+        {/* Notificación Toast Flotante Minimalista */}
         {notification && (
-          <div className="fixed bottom-5 right-5 z-50 animate-in slide-in-from-bottom-5 fade-in duration-200">
-            <div className={`px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border ${
-              notification.type === 'success' ? 'bg-emerald-900 text-white border-emerald-700' :
-              notification.type === 'info' ? 'bg-slate-900 text-white border-slate-700' :
-              'bg-rose-900 text-white border-rose-700'
+          <div className="fixed bottom-5 right-5 z-50 animate-in slide-in-from-bottom-3 fade-in duration-200">
+            <div className={`px-3.5 py-2.5 rounded-lg shadow-xl flex items-center gap-2.5 border text-xs ${
+              notification.type === 'success' ? 'bg-zinc-900 text-white border-zinc-700' :
+              notification.type === 'info' ? 'bg-zinc-900 text-white border-zinc-700' :
+              'bg-zinc-900 text-white border-rose-600'
             }`}>
-              {notification.type === 'success' ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> :
-               notification.type === 'info' ? <Info className="w-5 h-5 text-blue-400" /> :
-               <AlertCircle className="w-5 h-5 text-rose-400" />}
-              <span className="text-xs font-semibold">{notification.message}</span>
+              {notification.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" /> :
+               notification.type === 'info' ? <Info className="w-4 h-4 text-blue-400 shrink-0" /> :
+               <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
+              <span className="font-medium text-zinc-100">{notification.message}</span>
             </div>
           </div>
         )}
@@ -145,9 +153,10 @@ function MainLayout() {
           )}
         </main>
 
-        {/* Footer simple */}
-        <footer className="py-4 px-8 border-t border-slate-200 text-center text-xs text-slate-400 bg-white/50">
-          EMTELCO CMMS &copy; 2026 &bull; Trabajo de Grado CUN - Modelos de Innovación &bull; TICS Mantenimiento Preventivo
+        {/* Footer Minimalista */}
+        <footer className="py-4 px-8 border-t border-zinc-200/70 text-center text-[11px] text-zinc-400 bg-white/50 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
+          <span>EMTELCO CMMS &bull; Gestión Preventiva TICS 2026</span>
+          <span className="font-mono text-zinc-400 text-[10px]">CUN Ingeniería de Sistemas &bull; Trabajo de Grado</span>
         </footer>
 
       </div>
@@ -184,6 +193,39 @@ function MainLayout() {
         <SupabaseConfigModal 
           isOpen={isSupabaseModalOpen}
           onClose={() => setIsSupabaseModalOpen(false)}
+        />
+      )}
+
+      {isCommandPaletteOpen && (
+        <CommandPalette
+          isOpen={isCommandPaletteOpen}
+          onClose={setIsCommandPaletteOpen}
+          onNavigate={(tab) => setCurrentTab(tab)}
+          onOpenNewMaintenance={() => {
+            setPreselectedAsset(null);
+            setPreselectedProg(null);
+            setIsMaintenanceWizardOpen(true);
+          }}
+          onOpenNewAsset={() => setIsAssetModalOpen(true)}
+          onOpenAssetDetail={(asset) => setDetailAsset(asset)}
+        />
+      )}
+
+      {isScannerOpen && (
+        <AssetScannerModal
+          isOpen={isScannerOpen}
+          onClose={() => setIsScannerOpen(false)}
+          onSelectAssetForMaintenance={(asset) => handleExecuteMaintenance(asset)}
+          onSelectAssetForDetail={(asset) => setDetailAsset(asset)}
+        />
+      )}
+
+      {detailAsset && (
+        <AssetDetailModal
+          isOpen={Boolean(detailAsset)}
+          onClose={() => setDetailAsset(null)}
+          asset={detailAsset}
+          onExecuteMaintenance={handleExecuteMaintenance}
         />
       )}
 
