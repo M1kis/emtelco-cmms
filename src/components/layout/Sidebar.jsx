@@ -3,13 +3,9 @@ import {
   LayoutDashboard, 
   Laptop, 
   Wrench, 
-  CalendarDays, 
-  FileText, 
-  Building2, 
   X, 
   Plus
 } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
 
 export const Sidebar = ({ 
@@ -17,18 +13,14 @@ export const Sidebar = ({
   setCurrentTab, 
   mobileOpen, 
   setMobileOpen,
-  onOpenNewMaintenanceModal,
-  onOpenNewAssetModal 
+  onOpenNewMaintenanceModal 
 }) => {
   const { kpis } = useData();
 
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, count: null },
-    { id: 'activos', label: 'Inventario Activos', icon: Laptop, count: kpis.totalActivos },
-    { id: 'mantenimientos', label: 'Mantenimientos', icon: Wrench, count: kpis.totalMantenimientos },
-    { id: 'cronograma', label: 'Cronograma', icon: CalendarDays, count: kpis.atrasadosCount > 0 ? kpis.atrasadosCount : null, alert: kpis.atrasadosCount > 0 },
-    { id: 'reportes', label: 'Reportes & SLA', icon: FileText, count: null },
-    { id: 'sedes', label: 'Sedes & Configuración', icon: Building2, count: null },
+    { id: 'dashboard', label: 'Inicio', icon: LayoutDashboard, count: null },
+    { id: 'activos', label: 'Inventario de Equipos', icon: Laptop, count: kpis.totalActivos },
+    { id: 'mantenimientos', label: 'Mantenimientos & Actas', icon: Wrench, count: kpis.totalMantenimientos },
   ];
 
   return (
@@ -52,9 +44,9 @@ export const Sidebar = ({
           <div className="group cursor-pointer" onClick={() => setCurrentTab('dashboard')}>
             <div className="flex items-center gap-1.5 leading-none">
               <span className="font-bold text-zinc-100 text-sm tracking-tight group-hover:text-white transition-colors">EMTELCO</span>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase">CMMS</span>
+              <span className="text-[10px] font-mono text-zinc-400 uppercase bg-zinc-800 px-1 py-0.2 rounded">LITE</span>
             </div>
-            <p className="text-[10px] text-zinc-500 mt-1">Gestión Preventiva TICS</p>
+            <p className="text-[10px] text-zinc-500 mt-1">Gestión Preventiva de Equipos</p>
           </div>
 
           <button 
@@ -82,7 +74,7 @@ export const Sidebar = ({
         {/* Navigation */}
         <nav className="flex-1 px-2.5 py-3 space-y-1 overflow-y-auto">
           <div className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-zinc-600">
-            Navegación
+            Menú Principal
           </div>
 
           {navItems.map((item) => {
@@ -95,7 +87,7 @@ export const Sidebar = ({
                   setCurrentTab(item.id);
                   setMobileOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-medium transition-all duration-150 group ${
+                className={`w-full flex items-center justify-between px-2.5 py-2.5 rounded-md text-xs font-medium transition-all duration-150 group ${
                   active 
                     ? 'bg-zinc-800/90 text-white font-semibold shadow-2xs translate-x-0.5' 
                     : 'text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-100 hover:translate-x-0.5'
@@ -107,9 +99,7 @@ export const Sidebar = ({
                 </div>
                 {item.count !== null && (
                   <span className={`text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded transition-all ${
-                    item.alert 
-                      ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30 animate-pulse' 
-                      : active ? 'bg-zinc-700 text-zinc-200' : 'text-zinc-500 group-hover:text-zinc-400'
+                    active ? 'bg-zinc-700 text-zinc-200' : 'text-zinc-500 group-hover:text-zinc-400'
                   }`}>
                     {item.count}
                   </span>
@@ -122,8 +112,8 @@ export const Sidebar = ({
         {/* Minimal Footer Info */}
         <div className="p-3 border-t border-zinc-800/60 text-[11px] text-zinc-500">
           <div className="flex items-center justify-between">
-            <span>CUN &bull; Sistemas 2026</span>
-            <span className="font-mono text-[10px] text-zinc-600">v1.2</span>
+            <span>Soporte Técnico</span>
+            <span className="font-mono text-[10px] text-zinc-600">Lite v1.0</span>
           </div>
         </div>
 
