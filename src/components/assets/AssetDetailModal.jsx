@@ -100,6 +100,18 @@ export const AssetDetailModal = ({ asset, isOpen, onClose, onExecuteMaintenance 
               </div>
             </div>
 
+            {/* Fotografía del equipo */}
+            {asset.imagen_url && (
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col items-center justify-center">
+                <span className="text-[10px] font-bold text-slate-500 uppercase self-start mb-1.5">Fotografía del Equipo Registrado</span>
+                <img 
+                  src={asset.imagen_url} 
+                  alt={asset.nombre} 
+                  className="max-h-48 rounded-lg border border-slate-200 object-contain"
+                />
+              </div>
+            )}
+
             {/* Información General & Ubicación */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">

@@ -102,6 +102,7 @@ export const INITIAL_ACTIVOS = [
     categoria_id: 'c1111111-1111-4111-8111-111111111111',
     marca: 'Dell',
     modelo: 'Latitude 5420',
+    imagen_url: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=80',
     especificaciones: {
       cpu: 'Intel Core i7-1185G7 @ 3.00GHz',
       ram: '16GB DDR4 3200MHz',
@@ -128,6 +129,7 @@ export const INITIAL_ACTIVOS = [
     categoria_id: 'c1111111-1111-4111-8111-111111111111',
     marca: 'HP',
     modelo: 'ProDesk 400 G7 Microtower',
+    imagen_url: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop&q=80',
     especificaciones: {
       cpu: 'Intel Core i5-10500 @ 3.10GHz',
       ram: '16GB DDR4',
@@ -154,6 +156,7 @@ export const INITIAL_ACTIVOS = [
     categoria_id: 'c2222222-2222-4222-8222-222222222222',
     marca: 'Samsung',
     modelo: 'Galaxy A54 5G Enterprise Edition',
+    imagen_url: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80',
     especificaciones: {
       ram: '8GB',
       almacenamiento: '256GB Interno',

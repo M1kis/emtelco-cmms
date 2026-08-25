@@ -218,6 +218,13 @@ export const AssetsView = ({ onExecuteMaintenance }) => {
                     {getStatusBadge(asset.estado)}
                   </div>
 
+                  {/* Imagen del equipo si existe */}
+                  {asset.imagen_url && (
+                    <div className="my-2 rounded-md overflow-hidden bg-zinc-100 border border-zinc-200 h-28 flex items-center justify-center">
+                      <img src={asset.imagen_url} alt={asset.nombre} className="h-full w-full object-cover" />
+                    </div>
+                  )}
+
                   <h3 className="text-xs font-semibold text-zinc-900 line-clamp-1 mt-1">
                     {asset.nombre}
                   </h3>
