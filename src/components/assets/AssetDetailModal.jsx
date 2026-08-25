@@ -67,15 +67,6 @@ export const AssetDetailModal = ({ asset, isOpen, onClose, onExecuteMaintenance 
             </div>
             
             <div className="flex items-center gap-2">
-              <button
-                onClick={() => setIsQrModalOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-300 text-xs font-bold rounded-lg border border-slate-700 transition-colors"
-                title="Generar Etiqueta QR"
-              >
-                <QrCode className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Etiqueta QR</span>
-              </button>
-
               <button onClick={onClose} className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
                 <X className="w-5 h-5" />
               </button>

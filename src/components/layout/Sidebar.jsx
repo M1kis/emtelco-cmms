@@ -44,7 +44,6 @@ export const Sidebar = ({
           <div className="group cursor-pointer" onClick={() => setCurrentTab('dashboard')}>
             <div className="flex items-center gap-1.5 leading-none">
               <span className="font-bold text-zinc-100 text-sm tracking-tight group-hover:text-white transition-colors">EMTELCO</span>
-              <span className="text-[10px] font-mono text-zinc-400 uppercase bg-zinc-800 px-1 py-0.2 rounded">LITE</span>
             </div>
             <p className="text-[10px] text-zinc-500 mt-1">Gestión Preventiva de Equipos</p>
           </div>
@@ -113,7 +112,7 @@ export const Sidebar = ({
         <div className="p-3 border-t border-zinc-800/60 text-[11px] text-zinc-500">
           <div className="flex items-center justify-between">
             <span>Soporte Técnico</span>
-            <span className="font-mono text-[10px] text-zinc-600">Lite v1.0</span>
+            <span className="font-mono text-[10px] text-zinc-600">v1.0</span>
           </div>
         </div>
 

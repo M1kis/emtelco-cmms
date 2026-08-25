@@ -255,14 +255,6 @@ export const AssetsView = ({ onExecuteMaintenance }) => {
                   </button>
 
                   <button
-                    onClick={() => setQrAsset(asset)}
-                    className="btn-interactive p-1 hover:bg-zinc-100 text-zinc-600 hover:text-zinc-900 rounded border border-zinc-200 hover:border-zinc-300"
-                    title="Etiqueta QR"
-                  >
-                    <QrCode className="w-3.5 h-3.5" />
-                  </button>
-
-                  <button
                     onClick={() => {
                       setEditingAsset(asset);
                       setIsFormOpen(true);
@@ -326,16 +318,9 @@ export const AssetsView = ({ onExecuteMaintenance }) => {
                     <td className="p-3 text-right">
                       <div className="flex items-center justify-end gap-1">
                         <button
-                          onClick={() => setQrAsset(asset)}
-                          className="btn-interactive p-1 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded border border-zinc-200"
-                          title="QR Tag"
-                        >
-                          <QrCode className="w-3.5 h-3.5" />
-                        </button>
-                        <button
                           onClick={() => setDetailAsset(asset)}
                           className="btn-interactive p-1 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded border border-zinc-200"
-                          title="Ver"
+                          title="Ver Ficha"
                         >
                           <Eye className="w-3.5 h-3.5" />
                         </button>
@@ -374,14 +359,6 @@ export const AssetsView = ({ onExecuteMaintenance }) => {
           onClose={() => setDetailAsset(null)}
           asset={detailAsset}
           onExecuteMaintenance={onExecuteMaintenance}
-        />
-      )}
-
-      {qrAsset && (
-        <AssetQrModal
-          asset={qrAsset}
-          isOpen={Boolean(qrAsset)}
-          onClose={() => setQrAsset(null)}
         />
       )}
 

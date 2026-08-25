@@ -7,7 +7,6 @@ import { DashboardView } from './components/dashboard/DashboardView';
 import { AssetsView } from './components/assets/AssetsView';
 import { AssetFormModal } from './components/assets/AssetFormModal';
 import { AssetDetailModal } from './components/assets/AssetDetailModal';
-import { AssetScannerModal } from './components/assets/AssetScannerModal';
 import { MaintenanceView } from './components/maintenance/MaintenanceView';
 import { MaintenanceSimpleModal } from './components/maintenance/MaintenanceSimpleModal';
 import { SupabaseConfigModal } from './components/settings/SupabaseConfigModal';
@@ -25,7 +24,6 @@ function MainLayout() {
   const [isAssetModalOpen, setIsAssetModalOpen] = useState(false);
   const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-  const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [detailAsset, setDetailAsset] = useState(null);
 
   const { notification } = useData();
@@ -149,15 +147,6 @@ function MainLayout() {
           onOpenNewMaintenance={() => handleOpenMaintenance(null)}
           onOpenNewAsset={() => setIsAssetModalOpen(true)}
           onOpenAssetDetail={(asset) => setDetailAsset(asset)}
-        />
-      )}
-
-      {isScannerOpen && (
-        <AssetScannerModal
-          isOpen={isScannerOpen}
-          onClose={() => setIsScannerOpen(false)}
-          onSelectAssetForMaintenance={(asset) => handleOpenMaintenance(asset)}
-          onSelectAssetForDetail={(asset) => setDetailAsset(asset)}
         />
       )}
 

@@ -80,8 +80,7 @@ export const INITIAL_USERS = [
     rol: 'ADMIN',
     cargo: 'Líder / Administrador TICS',
     sede_id: 'a1111111-1111-4111-8111-111111111111',
-    telefono: '+57 300 123 4567',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
+    telefono: '+57 300 123 4567'
   },
   {
     id: '22222222-2222-4222-8222-222222222222',
@@ -90,8 +89,7 @@ export const INITIAL_USERS = [
     rol: 'TECNICO',
     cargo: 'Soporte Técnico',
     sede_id: 'a1111111-1111-4111-8111-111111111111',
-    telefono: '+57 312 888 9900',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80'
+    telefono: '+57 312 888 9900'
   }
 ];
 
