@@ -147,7 +147,36 @@ export async function generateMaintenancePDF(mantenimiento, activo, sede) {
     ]
   });
 
-  // --- 7. FIRMAS DE CONFORMIDAD & DIGITALES ---
+  // --- 5. REGISTRO DE EVIDENCIAS FOTOGRÁFICAS (ANTES, DURANTE, DESPUÉS) ---
+  if (mantenimiento.evidencias && mantenimiento.evidencias.length > 0) {
+    currentY = doc.lastAutoTable.finalY + 6;
+    doc.setFontSize(10.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('5. REGISTRO DE EVIDENCIAS FOTOGRÁFICAS (ANTES, DURANTE, DESPUÉS)', 14, currentY);
+
+    const evidenciaRows = mantenimiento.evidencias.map((ev, idx) => {
+      const tipoLabel = ev.tipo === 'FOTO_ANTES' ? '1. ANTES (Estado Inicial)' :
+                        ev.tipo === 'FOTO_DURANTE' ? '2. DURANTE (Procedimiento)' :
+                        '3. DESPUÉS (Resultado Final)';
+      return [`Foto #${idx + 1}`, tipoLabel, ev.descripcion || 'Evidencia fotográfica capturada y certificada en sitio'];
+    });
+
+    autoTable(doc, {
+      startY: currentY + 3,
+      theme: 'grid',
+      headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255], fontStyle: 'bold' },
+      styles: { fontSize: 7.5, cellPadding: 2.5 },
+      columnStyles: {
+        0: { cellWidth: 20, fontStyle: 'bold' },
+        1: { cellWidth: 48, fontStyle: 'bold', textColor: [5, 150, 105] },
+        2: { cellWidth: 'auto' }
+      },
+      head: [['Registro', 'Etapa de Evidencia', 'Detalle de la Verificación Fotográfica']],
+      body: evidenciaRows
+    });
+  }
+
+  // --- 6. FIRMAS DE CONFORMIDAD & DIGITALES ---
   currentY = doc.lastAutoTable.finalY + 12;
   
   if (currentY > 240) {

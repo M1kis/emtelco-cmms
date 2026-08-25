@@ -322,6 +322,12 @@ export const INITIAL_MANTENIMIENTOS = [
         descripcion: 'Estado inicial: ventilación con polvo y suciedad en cubierta'
       },
       {
+        id: 'ev-01-b',
+        tipo: 'FOTO_DURANTE',
+        url_archivo: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&auto=format&fit=crop&q=80',
+        descripcion: 'Procedimiento técnico: soplado interno, cambio de pasta y parches'
+      },
+      {
         id: 'ev-02',
         tipo: 'FOTO_DESPUES',
         url_archivo: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80',
@@ -357,6 +363,12 @@ export const INITIAL_MANTENIMIENTOS = [
         tipo: 'FOTO_ANTES',
         url_archivo: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80',
         descripcion: 'Switch Cisco en gabinete rack antes de inspección'
+      },
+      {
+        id: 'ev-03-b',
+        tipo: 'FOTO_DURANTE',
+        url_archivo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80',
+        descripcion: 'Procedimiento técnico: limpieza de extractores y peinado de cables'
       },
       {
         id: 'ev-04',

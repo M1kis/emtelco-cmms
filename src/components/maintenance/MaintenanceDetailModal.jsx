@@ -135,15 +135,17 @@ export const MaintenanceDetailModal = ({ mantenimiento, isOpen, onClose }) => {
                 <Camera className="w-4 h-4 text-emerald-600" />
                 <span>Evidencias Fotográficas Registradas en Sitio</span>
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {mantenimiento.evidencias.map((ev, idx) => (
                   <div key={idx} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-                    <img src={ev.url_archivo} alt={ev.descripcion} className="w-full h-36 object-cover" />
+                    <img src={ev.url_archivo} alt={ev.descripcion} className="w-full h-32 object-cover" />
                     <div className="p-2">
-                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                        {ev.tipo === 'FOTO_ANTES' ? '📸 Antes' : '✨ Después'}
+                      <span className="text-[10px] font-bold text-zinc-800 bg-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200">
+                        {ev.tipo === 'FOTO_ANTES' ? '📸 1. Antes' :
+                         ev.tipo === 'FOTO_DURANTE' ? '🔧 2. Durante' :
+                         '✨ 3. Después'}
                       </span>
-                      <p className="text-[11px] text-slate-600 mt-1">{ev.descripcion}</p>
+                      <p className="text-[11px] text-slate-600 mt-1 line-clamp-2">{ev.descripcion}</p>
                     </div>
                   </div>
                 ))}
